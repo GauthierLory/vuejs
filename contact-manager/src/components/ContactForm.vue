@@ -1,7 +1,10 @@
 <template>
     <div>
 <h2>Contact Form</h2>
-<form>
+<!--on souhaite écouter l'event form, on utilise v-on: ou le @
+pour éviter le comportement par défaut on ajout .prevent-->
+
+<form @submit.prevent="createContact">
     <input type="text" placeholder="prénom" v-model="contact.firstName">
     <input type="text" placeholder="nom" v-model="contact.lastName">
     <input type="text" placeholder="e-mail" v-model="contact.mail">
@@ -24,13 +27,18 @@
                     phone: ""
                 }
             };
+        },
+        // on ajoute une prop methods, dont la valeur est un objet
+        methods: {
+            // qui comporte les méthodes que l'on veut
+            createContact(){
+                console.log(this.contact);
+            }
         }
-    }
+    };
 </script>
 
 // le scoped permet de limiter le style au component contact
 <style scoped>
-h2{
-    color: red
-}
+
 </style>
