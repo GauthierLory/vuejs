@@ -15,30 +15,38 @@ pour éviter le comportement par défaut on ajout .prevent-->
 </template>
 
 <script>
-    export default {
-        // la fonction data retourne un objet
-        data(){
-            return{
-                // qui comporte plusieurs propriétés
-                contact :{
-                    firstName: "",
-                    lastName: "",
-                    mail: "",
-                    phone: ""
-                }
-            };
-        },
-        // on ajoute une prop methods, dont la valeur est un objet
-        methods: {
-            // qui comporte les méthodes que l'on veut
-            createContact(){
-                console.log(this.contact);
-            }
-        }
+import db from '../shared/db';
+
+export default {
+  // la fonction data retourne un objet
+  data() {
+    return {
+      // qui comporte plusieurs propriétés
+      contact: {
+        firstName: '',
+        lastName: '',
+        mail: '',
+        phone: '',
+      },
     };
+  },
+  // on ajoute une prop methods, dont la valeur est un objet
+  methods: {
+    // qui comporte les méthodes que l'on veut
+    createContact() {
+      db.create(this.contact)
+      .then((data) => {
+          console.log(data);
+        })
+      .catch(error => {
+          console.log(error);
+        })
+    },
+  },
+};
 </script>
 
-// le scoped permet de limiter le style au component contact
+<!-- le scoped permet de limiter le style au component contact -->
 <style scoped>
 
 </style>
